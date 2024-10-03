@@ -4,6 +4,7 @@ import Background from "../../assets/login2.png";
 import Peace from "../../assets/peace.svg";
 import { Tabs, TabsList } from "@/components/ui/tabs";
 import { TabsContent, TabsTrigger } from "@radix-ui/react-tabs";
+import { Button } from "@/components/ui/button";
 
 const Auth = () => {
 
@@ -11,9 +12,17 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const handleSubmitLogin = async () => {
+
+  }
+
+  const handleSubmitSignup = async () => {
+
+  }
+
   return (
     <div className="h-[100vh] w-[100vw] flex items-center justify-center">
-      <div className="h-[80vh] bg-white border-2 border-white text-opacity-90 shadow-2xl w-[80vw] md:w-[90vw] lg:w-[70] xl:w-[60vw] rounded-3xl grid xl:group-cols-2">
+      <div className="h-[80vh] bg-white border-2 border-white text-opacity-90 shadow-2xl w-[80vw] md:w-[90vw] lg:w-[70] xl:w-[60vw] rounded-3xl grid xl:grid-cols-2">
         <div className="flex flex-col gap-10 items-center justify-center">
           <div className="flex items-center justify-center flex-col">
             <div className="flex items-center justify-center">
@@ -33,14 +42,19 @@ const Auth = () => {
               <TabsContent className="flex flex-col gap-5 mt-10" value="login">
                 <Input placeholder="Email" type="email" className="rounded-full p-6" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <Input placeholder="Senha" type="password" className="rounded-full p-6" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <Button className="rounded-full p-6" onClick={handleSubmitLogin}>Entrar</Button>
               </TabsContent>
               <TabsContent className="flex flex-col gap-5 mt-10" value="signup">
               <Input placeholder="Email" type="email" className="rounded-full p-6" value={email} onChange={(e) => setEmail(e.target.value)} />
               <Input placeholder="Senha" type="password" className="rounded-full p-6" value={password} onChange={(e) => setPassword(e.target.value)} />
               <Input placeholder="Confirme a Senha" type="password" className="rounded-full p-6" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+              <Button className="rounded-full p-6" onClick={handleSubmitSignup}>Cadastrar</Button>
               </TabsContent>
             </Tabs>
           </div>
+        </div>
+        <div className="hidden xl:flex justify-center items-center">
+          <img src={Background} alt="background" className="h-[700px]"/>
         </div>
       </div>
     </div>
