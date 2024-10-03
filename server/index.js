@@ -16,6 +16,9 @@ app.use(cors({
   credentials: true,
 }));
 
+app.use(cookieParser());
+app.use(express.json());
+
 const server = app.listen(port, () => {
   console.log(`Server is running on port: http://localhost:${port}`);
 });
