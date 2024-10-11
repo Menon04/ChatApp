@@ -5,6 +5,9 @@ import Peace from "../../assets/peace.svg";
 import { Tabs, TabsList } from "@/components/ui/tabs";
 import { TabsContent, TabsTrigger } from "@radix-ui/react-tabs";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import apiClient from "@/lib/api-client";
+import { SIGNUP_ROUTE } from "@/utils/constants";
 
 const Auth = () => {
 
@@ -12,12 +15,37 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const validateSignup = () => {
+    if(!email.length){
+      alert 
+      toast.error("Campo email não pode ser vazio");
+      return false;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        toast.error("Formato de email inválido");
+        return false;
+    }
+    if(!password.length){
+      toast.error("Campo senha não pode ser vazio");
+      return false;
+    }
+    if(password !== confirmPassword){
+      toast.error("Senhas não conferem");
+      return false;
+    }
+    return true;
+  }
+
   const handleSubmitLogin = async () => {
 
   }
 
   const handleSubmitSignup = async () => {
-
+    if(validateSignup()){
+      const response = await apiClient.post(SIGNUP_ROUTE, {email, password});
+      console.log(response);
+    }
   }
 
   return (
