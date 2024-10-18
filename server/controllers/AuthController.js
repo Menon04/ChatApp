@@ -74,3 +74,25 @@ export const login =  async (req, res, next) => {
     }
 }
 
+export const getUserInfo = async (req, res, next) => {
+    try {
+        const userData = await User.findById(req.user.id);
+        if(!userData){
+            return res.status(404).send("Usuário não encontrado");
+        }
+        return res.status(200).json({
+                id: req.userData.id,
+                email: req.userData.email,
+                firstName: req.userData.firstName,
+                lastName: req.userData.lastName,
+                image: req.userData.image,
+                profileSetup: req.userData.profileSetup,
+                color: req.userData.color,
+        });
+    } 
+    catch(error){
+        console.log(error);
+        return res.status(500).send("Internal Server Error");
+    }
+}
+
