@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppStore } from "@/store";
+import { useNavigate } from "react-router-dom";
+import { IoArrowBack } from "react-icons/io5";
 
 const Profile = () => {
-  const {userInfo} = useAppStore();
+  const navigate = useNavigate();
+  const {userInfo, setUserInfo} = useAppStore();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [image, setImage] = useState(null);
+  const [hovered, setHovered] = useState(false);
+  const [color, setColor] = useState(0);
+
+  const svaeChanges = async () => {
+
+  };
+
   return (
-    <div>
-      <h1>Profile</h1>
-      <div>Email:{userInfo.email}</div>
+    <div className="bg-[#1b1c24] h-[100vh] flex items-center justify-center flex-col gap-10">
+      <div className="flex flex-col gap-10 w-[80vw] md:w-max">
+        <div>
+          <IoArrowBack className="text-4xl lg:text-6xl text-white/90 cursor-pointer"/>
+        </div>
+        <div className="grid grid-cols-2">
+          <div className="h-full w-32 md:w-48 md:h-48 relative flex items-center justify-center" 
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}>
+
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
